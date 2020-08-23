@@ -26,6 +26,10 @@ function resolveGitDir(): string {
     if (process.env.LOCAL_GIT_DIRECTORY != null) {
         return path.resolve(process.env.LOCAL_GIT_DIRECTORY)
     } else {
+
+        if (process.platform === 'freebsd')
+            return "/usr/local/bin/git"
+
         return resolveEmbeddedGitDir()
     }
 }
